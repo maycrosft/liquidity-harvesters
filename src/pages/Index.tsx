@@ -4,11 +4,11 @@ import { RewardsChart } from "@/components/RewardsChart";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100">
       <main className="container mx-auto py-8 space-y-8">
         <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold tracking-tight">DeFi Liquidity Pool</h1>
-          <p className="text-lg text-muted-foreground">
+          <h1 className="text-4xl font-bold tracking-tight text-green-800">Green Cash</h1>
+          <p className="text-lg text-green-700">
             Earn up to 200% returns with 1% daily rewards
           </p>
         </div>

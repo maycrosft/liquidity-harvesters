@@ -16,19 +16,24 @@ export const RewardsChart = () => {
   const data = generateDummyData();
 
   return (
-    <Card className="p-6">
-      <h3 className="text-lg font-semibold mb-4">Returns Projection</h3>
+    <Card className="p-6 bg-white border-green-200 border-2">
+      <h3 className="text-lg font-semibold mb-4 text-green-800">Returns Projection</h3>
       <div className="h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="day" />
-            <YAxis />
-            <Tooltip />
+            <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+            <XAxis dataKey="day" stroke="#047857" />
+            <YAxis stroke="#047857" />
+            <Tooltip 
+              contentStyle={{ 
+                backgroundColor: '#ffffff',
+                border: '1px solid #047857'
+              }}
+            />
             <Line 
               type="monotone" 
               dataKey="returns" 
-              stroke="hsl(var(--primary))" 
+              stroke="#059669"
               strokeWidth={2}
               dot={false}
             />

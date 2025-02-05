@@ -18,28 +18,28 @@ export const PoolStats = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
-      <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300">
-        <div className="text-sm text-muted-foreground">Total Liquidity</div>
-        <div className="text-2xl font-bold">${poolStats.totalLiquidity}</div>
-        <Progress value={progress} className="h-2" />
+      <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300 bg-white border-green-200 border">
+        <div className="text-sm text-green-600">Total Liquidity</div>
+        <div className="text-2xl font-bold text-green-800">${poolStats.totalLiquidity}</div>
+        <Progress value={progress} className="h-2 bg-green-100" indicatorClassName="bg-green-500" />
       </Card>
 
-      <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300">
-        <div className="text-sm text-muted-foreground">Active Investors</div>
-        <div className="text-2xl font-bold">{poolStats.activeInvestors}</div>
-        <Progress value={78} className="h-2" />
+      <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300 bg-white border-green-200 border">
+        <div className="text-sm text-green-600">Active Investors</div>
+        <div className="text-2xl font-bold text-green-800">{poolStats.activeInvestors}</div>
+        <Progress value={78} className="h-2 bg-green-100" indicatorClassName="bg-green-500" />
       </Card>
 
-      <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300">
-        <div className="text-sm text-muted-foreground">Average Return</div>
-        <div className="text-2xl font-bold">{poolStats.averageReturn}</div>
-        <Progress value={82} className="h-2" />
+      <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300 bg-white border-green-200 border">
+        <div className="text-sm text-green-600">Average Return</div>
+        <div className="text-2xl font-bold text-green-800">{poolStats.averageReturn}</div>
+        <Progress value={82} className="h-2 bg-green-100" indicatorClassName="bg-green-500" />
       </Card>
 
-      <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300">
-        <div className="text-sm text-muted-foreground">Days Until Max Return</div>
-        <div className="text-2xl font-bold">{poolStats.timeRemaining}</div>
-        <Progress value={45} className="h-2" />
+      <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300 bg-white border-green-200 border">
+        <div className="text-sm text-green-600">Days Until Max Return</div>
+        <div className="text-2xl font-bold text-green-800">{poolStats.timeRemaining}</div>
+        <Progress value={45} className="h-2 bg-green-100" indicatorClassName="bg-green-500" />
       </Card>
     </div>
   );
