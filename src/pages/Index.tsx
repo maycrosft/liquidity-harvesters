@@ -1,12 +1,25 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { PoolStats } from "@/components/PoolStats";
+import { InvestmentForm } from "@/components/InvestmentForm";
+import { RewardsChart } from "@/components/RewardsChart";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <main className="container mx-auto py-8 space-y-8">
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl font-bold tracking-tight">DeFi Liquidity Pool</h1>
+          <p className="text-lg text-muted-foreground">
+            Earn up to 200% returns with 1% daily rewards
+          </p>
+        </div>
+
+        <PoolStats />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <InvestmentForm />
+          <RewardsChart />
+        </div>
+      </main>
     </div>
   );
 };
