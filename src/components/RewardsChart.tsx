@@ -5,7 +5,7 @@ const generateDummyData = () => {
   const data = [];
   for (let i = 0; i < 30; i++) {
     data.push({
-      day: `Day ${i + 1}`,
+      day: `Dia ${i + 1}`,
       returns: Math.min(100 + (i * 3.33), 200),
     });
   }
@@ -17,7 +17,7 @@ export const RewardsChart = () => {
 
   return (
     <Card className="p-6 bg-white border-green-200 border-2">
-      <h3 className="text-lg font-semibold mb-4 text-green-800">Returns Projection</h3>
+      <h3 className="text-lg font-semibold mb-4 text-green-800">Projeção de Retornos</h3>
       <div className="h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>

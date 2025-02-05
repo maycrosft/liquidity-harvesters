@@ -12,32 +12,32 @@ export const InvestmentForm = () => {
     e.preventDefault();
     if (!amount || parseFloat(amount) <= 0) {
       toast({
-        title: "Invalid Amount",
-        description: "Please enter a valid investment amount.",
+        title: "Valor Inválido",
+        description: "Por favor, insira um valor de investimento válido.",
         variant: "destructive",
       });
       return;
     }
     
     toast({
-      title: "Investment Successful",
-      description: `You have successfully invested $${amount}. Your daily rewards will start accumulating soon.`,
+      title: "Investimento Realizado com Sucesso",
+      description: `Você investiu R$${amount}. Suas recompensas diárias começarão a acumular em breve.`,
     });
     setAmount("");
   };
 
   return (
     <Card className="p-6 max-w-md mx-auto bg-white shadow-lg border-green-200 border-2">
-      <h3 className="text-lg font-semibold mb-4 text-green-800">Make an Investment</h3>
+      <h3 className="text-lg font-semibold mb-4 text-green-800">Fazer um Investimento</h3>
       <form onSubmit={handleInvest} className="space-y-4">
         <div className="space-y-2">
           <label htmlFor="amount" className="text-sm font-medium text-green-700">
-            Investment Amount (USD)
+            Valor do Investimento (R$)
           </label>
           <Input
             id="amount"
             type="number"
-            placeholder="Enter amount"
+            placeholder="Digite o valor"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             className="w-full border-green-200 focus:border-green-500 focus:ring-green-500"
@@ -47,14 +47,14 @@ export const InvestmentForm = () => {
         </div>
         <div className="space-y-2">
           <div className="text-sm text-green-600">
-            Expected Daily Return: {amount ? `$${(parseFloat(amount) * 0.01).toFixed(2)}` : "$0.00"}
+            Retorno Diário Esperado: {amount ? `R$${(parseFloat(amount) * 0.01).toFixed(2)}` : "R$0,00"}
           </div>
           <div className="text-sm text-green-600">
-            Maximum Return: {amount ? `$${(parseFloat(amount) * 2).toFixed(2)}` : "$0.00"}
+            Retorno Máximo: {amount ? `R$${(parseFloat(amount) * 2).toFixed(2)}` : "R$0,00"}
           </div>
         </div>
         <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white">
-          Invest Now
+          Investir Agora
         </Button>
       </form>
     </Card>

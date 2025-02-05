@@ -10,13 +10,13 @@ const Index = () => {
           <div className="flex items-center justify-center gap-4">
             <img 
               src="/green-cash-logo.png" 
-              alt="Green Cash Logo" 
+              alt="Logo Green Cash" 
               className="w-12 h-12 object-contain"
             />
             <h1 className="text-4xl font-bold tracking-tight text-green-800">Green Cash</h1>
           </div>
           <p className="text-lg text-green-700">
-            Earn up to 200% returns with 1% daily rewards
+            Ganhe até 200% de retorno com 1% de recompensa diária
           </p>
         </div>
 
