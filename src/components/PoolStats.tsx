@@ -21,25 +21,25 @@ export const PoolStats = () => {
       <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300 bg-white border-green-200 border">
         <div className="text-sm text-green-600">Total Liquidity</div>
         <div className="text-2xl font-bold text-green-800">${poolStats.totalLiquidity}</div>
-        <Progress value={progress} className="h-2 bg-green-100" indicatorClassName="bg-green-500" />
+        <Progress value={progress} className="bg-green-100" indicatorColor="bg-green-500" />
       </Card>
 
       <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300 bg-white border-green-200 border">
         <div className="text-sm text-green-600">Active Investors</div>
         <div className="text-2xl font-bold text-green-800">{poolStats.activeInvestors}</div>
-        <Progress value={78} className="h-2 bg-green-100" indicatorClassName="bg-green-500" />
+        <Progress value={78} className="bg-green-100" indicatorColor="bg-green-500" />
       </Card>
 
       <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300 bg-white border-green-200 border">
         <div className="text-sm text-green-600">Average Return</div>
         <div className="text-2xl font-bold text-green-800">{poolStats.averageReturn}</div>
-        <Progress value={82} className="h-2 bg-green-100" indicatorClassName="bg-green-500" />
+        <Progress value={82} className="bg-green-100" indicatorColor="bg-green-500" />
       </Card>
 
       <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300 bg-white border-green-200 border">
         <div className="text-sm text-green-600">Days Until Max Return</div>
         <div className="text-2xl font-bold text-green-800">{poolStats.timeRemaining}</div>
-        <Progress value={45} className="h-2 bg-green-100" indicatorClassName="bg-green-500" />
+        <Progress value={45} className="bg-green-100" indicatorColor="bg-green-500" />
       </Card>
     </div>
   );
