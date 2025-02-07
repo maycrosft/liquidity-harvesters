@@ -10,6 +10,8 @@ export const PoolStats = () => {
     activeInvestors: "456",
     averageReturn: "156%",
     timeRemaining: "44",
+    leftTeam: "223",
+    rightTeam: "233",
   });
 
   useEffect(() => {

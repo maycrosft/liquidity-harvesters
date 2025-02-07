@@ -2,6 +2,7 @@
 import { PoolStats } from "@/components/PoolStats";
 import { InvestmentForm } from "@/components/InvestmentForm";
 import { RewardsChart } from "@/components/RewardsChart";
+import { AffiliateSystem } from "@/components/AffiliateSystem";
 
 const Index = () => {
   return (
@@ -25,8 +26,10 @@ const Index = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <InvestmentForm />
-          <RewardsChart />
+          <AffiliateSystem />
         </div>
+
+        <RewardsChart />
       </main>
     </div>
   );
