@@ -1,3 +1,4 @@
+
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useEffect, useState } from "react";
@@ -19,13 +20,13 @@ export const PoolStats = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
       <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300 bg-white border-green-200 border">
-        <div className="text-sm text-green-600">Liquidez Total</div>
+        <div className="text-sm text-green-600">Fundos Recebidos</div>
         <div className="text-2xl font-bold text-green-800">R${poolStats.totalLiquidity}</div>
         <Progress value={progress} className="bg-green-100" indicatorColor="bg-green-500" />
       </Card>
 
       <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300 bg-white border-green-200 border">
-        <div className="text-sm text-green-600">Investidores Ativos</div>
+        <div className="text-sm text-green-600">Fundos Disponíveis</div>
         <div className="text-2xl font-bold text-green-800">{poolStats.activeInvestors}</div>
         <Progress value={78} className="bg-green-100" indicatorColor="bg-green-500" />
       </Card>
@@ -37,7 +38,7 @@ export const PoolStats = () => {
       </Card>
 
       <Card className="p-6 space-y-4 hover:shadow-lg transition-shadow duration-300 bg-white border-green-200 border">
-        <div className="text-sm text-green-600">Dias até Retorno Máximo</div>
+        <div className="text-sm text-green-600">Comunidade</div>
         <div className="text-2xl font-bold text-green-800">{poolStats.timeRemaining}</div>
         <Progress value={45} className="bg-green-100" indicatorColor="bg-green-500" />
       </Card>
