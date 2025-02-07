@@ -11,6 +11,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { useToast } from "@/components/ui/use-toast";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const menuItems = [
   {
@@ -33,9 +34,9 @@ const menuItems = [
 export function AppSidebar() {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const isMobile = useIsMobile();
 
   const handleLogout = () => {
-    // Aqui você pode adicionar a lógica de logout
     localStorage.removeItem("user");
     toast({
       title: "Logout realizado com sucesso",
@@ -45,7 +46,7 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar>
+    <Sidebar className="absolute top-0 right-0 z-50">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
@@ -54,20 +55,20 @@ export function AppSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
                     onClick={() => navigate(item.path)}
-                    className="w-full"
+                    className="w-full flex items-center justify-end gap-2"
                   >
+                    {!isMobile && <span>{item.title}</span>}
                     <item.icon className="h-5 w-5" />
-                    <span>{item.title}</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
               <SidebarMenuItem>
                 <SidebarMenuButton
                   onClick={handleLogout}
-                  className="w-full text-red-600 hover:text-red-700"
+                  className="w-full flex items-center justify-end gap-2 text-red-600 hover:text-red-700"
                 >
+                  {!isMobile && <span>Sair</span>}
                   <LogOut className="h-5 w-5" />
-                  <span>Sair</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
