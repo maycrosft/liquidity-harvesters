@@ -1,3 +1,4 @@
+
 import { PoolStats } from "@/components/PoolStats";
 import { InvestmentForm } from "@/components/InvestmentForm";
 import { RewardsChart } from "@/components/RewardsChart";
@@ -16,7 +17,7 @@ const Index = () => {
             <h1 className="text-4xl font-bold tracking-tight text-green-800">Green Cash</h1>
           </div>
           <p className="text-lg text-green-700">
-            Ganhe até 200% de retorno com 1% de recompensa diária
+            A comunidade financeira que mais cresce
           </p>
         </div>
 
