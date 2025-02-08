@@ -9,7 +9,6 @@ export const AffiliateSystem = () => {
   const { toast } = useToast();
   const [position, setPosition] = useState<"left" | "right" | null>(null);
   
-  // Na prática, este link seria gerado dinamicamente com base no ID do usuário
   const affiliateLink = `https://greencash.com/ref/${Math.random().toString(36).substring(7)}`;
 
   const copyToClipboard = async () => {
@@ -39,9 +38,9 @@ export const AffiliateSystem = () => {
   return (
     <Card className="p-6 space-y-6 bg-white border-green-200 border">
       <div className="space-y-2">
-        <h3 className="text-lg font-semibold text-green-800">Sistema de Afiliados</h3>
+        <h3 className="text-lg font-semibold text-green-800">Crescimento da Comunidade</h3>
         <p className="text-sm text-green-600">
-          Compartilhe seu link e escolha a posição para seus novos afiliados
+          Compartilhe seu link e escolha a posição para seus novos membros
         </p>
       </div>
 
@@ -63,7 +62,7 @@ export const AffiliateSystem = () => {
       </div>
 
       <div className="space-y-2">
-        <p className="text-sm font-medium text-green-700">Selecione a posição do afiliado:</p>
+        <p className="text-sm font-medium text-green-700">Selecione a posição do membro:</p>
         <div className="flex gap-4">
           <Button
             variant={position === "left" ? "default" : "outline"}
@@ -84,3 +83,4 @@ export const AffiliateSystem = () => {
     </Card>
   );
 };
+
