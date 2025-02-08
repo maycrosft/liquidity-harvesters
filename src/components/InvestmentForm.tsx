@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,26 +14,26 @@ export const InvestmentForm = () => {
     if (!amount || parseFloat(amount) <= 0) {
       toast({
         title: "Valor Inválido",
-        description: "Por favor, insira um valor de investimento válido.",
+        description: "Por favor, insira um valor válido para iniciar a farm.",
         variant: "destructive",
       });
       return;
     }
     
     toast({
-      title: "Investimento Realizado com Sucesso",
-      description: `Você investiu R$${amount}. Suas recompensas diárias começarão a acumular em breve.`,
+      title: "Farm Iniciada com Sucesso",
+      description: `Você iniciou uma farm com R$${amount}. Suas recompensas diárias começarão a acumular em breve.`,
     });
     setAmount("");
   };
 
   return (
     <Card className="p-6 max-w-md mx-auto bg-white shadow-lg border-green-200 border-2">
-      <h3 className="text-lg font-semibold mb-4 text-green-800">Fazer um Investimento</h3>
+      <h3 className="text-lg font-semibold mb-4 text-green-800">Iniciar uma Farm</h3>
       <form onSubmit={handleInvest} className="space-y-4">
         <div className="space-y-2">
           <label htmlFor="amount" className="text-sm font-medium text-green-700">
-            Valor do Investimento (R$)
+            Valor para Iniciar a Farm (R$)
           </label>
           <Input
             id="amount"
@@ -54,7 +55,7 @@ export const InvestmentForm = () => {
           </div>
         </div>
         <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 text-white">
-          Investir Agora
+          Iniciar Farm
         </Button>
       </form>
     </Card>
