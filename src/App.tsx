@@ -8,6 +8,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import Registration from "./pages/Registration";
 import Dashboard from "./pages/Dashboard";
+import Community from "./pages/Community";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,7 +26,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Registration />} />
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/comunidade" element={<NotFound />} />
+                <Route path="/comunidade" element={<Community />} />
                 <Route path="/farms" element={<NotFound />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
