@@ -30,7 +30,7 @@ const menuItems = [
     title: "Farms",
     icon: Wheat,
     path: "/farms",
-    requiresAuth: false
+    requiresAuth: true
   },
 ];
 
@@ -87,4 +87,3 @@ export function AppSidebar() {
     </Sidebar>
   );
 }
-
