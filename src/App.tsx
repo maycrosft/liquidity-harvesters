@@ -9,6 +9,7 @@ import { AppSidebar } from "@/components/AppSidebar";
 import Registration from "./pages/Registration";
 import Dashboard from "./pages/Dashboard";
 import Community from "./pages/Community";
+import Farms from "./pages/Farms";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,7 +28,7 @@ const App = () => (
                 <Route path="/" element={<Registration />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/comunidade" element={<Community />} />
-                <Route path="/farms" element={<NotFound />} />
+                <Route path="/farms" element={<Farms />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
