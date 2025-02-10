@@ -50,7 +50,7 @@ export function AppHeader() {
           <DropdownMenuContent align="end" className="w-48">
             <DropdownMenuItem onClick={() => navigate("/dashboard")}>
               <span className="flex items-center gap-2">
-                Início
+                <Clover className="h-4 w-4" /> Início
               </span>
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => navigate("/comunidade")}>
