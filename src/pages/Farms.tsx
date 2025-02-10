@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { InvestmentForm } from "@/components/InvestmentForm";
@@ -20,7 +19,7 @@ const Farms = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 pt-16 p-8">
       <div className="max-w-7xl mx-auto space-y-8">
         <h1 className="text-2xl font-bold text-green-800 mb-6">Gerenciamento de Farms</h1>
 

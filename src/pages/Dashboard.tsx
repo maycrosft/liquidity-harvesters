@@ -6,7 +6,7 @@ import { AffiliateSystem } from "@/components/AffiliateSystem";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 pt-16">
       <main className="container mx-auto py-8 space-y-8">
         <div className="text-center space-y-4">
           <div className="flex items-center justify-center gap-4">

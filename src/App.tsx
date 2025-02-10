@@ -5,7 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/AppSidebar";
+import { AppHeader } from "@/components/AppHeader";
 import Registration from "./pages/Registration";
 import Dashboard from "./pages/Dashboard";
 import Community from "./pages/Community";
@@ -21,8 +21,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <SidebarProvider>
-          <div className="min-h-screen flex w-full">
-            <AppSidebar />
+          <div className="min-h-screen flex w-full flex-col">
+            <AppHeader />
             <main className="flex-1">
               <Routes>
                 <Route path="/" element={<Registration />} />

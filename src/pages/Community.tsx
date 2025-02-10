@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Users, ChevronRight, ChevronLeft } from "lucide-react";
@@ -18,7 +17,7 @@ const Community = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 pt-16 p-8">
       <div className="max-w-6xl mx-auto space-y-8">
         <div className="flex items-center gap-2 mb-8">
           <Users className="h-6 w-6 text-green-600" />
