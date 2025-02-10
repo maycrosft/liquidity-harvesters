@@ -40,7 +40,7 @@ export const AffiliateSystem = () => {
       <div className="space-y-2">
         <h3 className="text-lg font-semibold text-green-800">Crescimento da Comunidade</h3>
         <p className="text-sm text-green-600">
-          Compartilhe seu link para os novos membros da comunidade
+          Compartilhe o link de referência com seus amigos e receba 10% de cashback
         </p>
       </div>
 
