@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Menu, Users, Wheat, LogOut, Facebook, Instagram, Twitter } from "lucide-react";
+import { Menu, Users, Wheat, LogOut, Facebook, Instagram, Twitter, Clover } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 export function AppHeader() {
@@ -37,14 +37,7 @@ export function AppHeader() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-green-100 shadow-sm">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <img 
-            src="/green-cash-logo.png" 
-            alt="Logo Green Cash" 
-            className="w-8 h-8 object-contain"
-            onError={(e) => {
-              e.currentTarget.src = "/placeholder.svg";
-            }}
-          />
+          <Clover className="w-8 h-8 text-green-600" />
           <h1 className="text-xl font-bold text-green-800">Green Cash</h1>
         </div>
 
