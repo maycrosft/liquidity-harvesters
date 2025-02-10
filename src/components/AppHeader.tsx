@@ -6,9 +6,10 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Settings, Users, Wheat, LogOut } from "lucide-react";
+import { Menu, Users, Wheat, LogOut, Facebook, Instagram, Twitter } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 export function AppHeader() {
@@ -26,6 +27,10 @@ export function AppHeader() {
     navigate("/");
   };
 
+  const openSocialMedia = (url: string) => {
+    window.open(url, '_blank');
+  };
+
   if (!isLoggedIn) return null;
 
   return (
@@ -36,6 +41,9 @@ export function AppHeader() {
             src="/green-cash-logo.png" 
             alt="Logo Green Cash" 
             className="w-8 h-8 object-contain"
+            onError={(e) => {
+              e.currentTarget.src = "/placeholder.svg";
+            }}
           />
           <h1 className="text-xl font-bold text-green-800">Green Cash</h1>
         </div>
@@ -43,7 +51,7 @@ export function AppHeader() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon">
-              <Settings className="h-5 w-5" />
+              <Menu className="h-5 w-5" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-48">
@@ -62,6 +70,23 @@ export function AppHeader() {
                 <Wheat className="h-4 w-4" /> Farms
               </span>
             </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={() => openSocialMedia('https://facebook.com')}>
+              <span className="flex items-center gap-2">
+                <Facebook className="h-4 w-4" /> Facebook
+              </span>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => openSocialMedia('https://instagram.com')}>
+              <span className="flex items-center gap-2">
+                <Instagram className="h-4 w-4" /> Instagram
+              </span>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => openSocialMedia('https://twitter.com')}>
+              <span className="flex items-center gap-2">
+                <Twitter className="h-4 w-4" /> Twitter
+              </span>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout} className="text-red-600">
               <span className="flex items-center gap-2">
                 <LogOut className="h-4 w-4" /> Sair
