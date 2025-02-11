@@ -17,7 +17,7 @@ export function AppHeader() {
   const location = useLocation();
   const { toast } = useToast();
   const isLoggedIn = location.pathname !== "/";
-  const [walletAddress] = useState(localStorage.getItem("walletAddress") || "0x..."); // Simplified for demo
+  const [walletAddress, setWalletAddress] = useState(localStorage.getItem("walletAddress") || "0x...");
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -26,6 +26,38 @@ export function AppHeader() {
       description: "Você foi desconectado da sua conta",
     });
     navigate("/");
+  };
+
+  const connectWallet = async () => {
+    try {
+      if (typeof window.ethereum !== 'undefined') {
+        // Solicita ao usuário que mude de conta no MetaMask
+        const accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts'
+        });
+        
+        const newAddress = accounts[0];
+        setWalletAddress(newAddress);
+        localStorage.setItem("walletAddress", newAddress);
+        
+        toast({
+          title: "Carteira conectada com sucesso",
+          description: "Sua carteira foi atualizada",
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: "MetaMask não encontrado",
+          description: "Por favor, instale o MetaMask para continuar.",
+        });
+      }
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Erro ao conectar carteira",
+        description: "Ocorreu um erro ao tentar conectar sua carteira.",
+      });
+    }
   };
 
   const openSocialMedia = (url: string) => {
@@ -43,10 +75,15 @@ export function AppHeader() {
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 text-sm text-gray-600">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={connectWallet}
+            className="flex items-center gap-2 text-sm text-gray-600 hover:text-green-600"
+          >
             <Wallet className="w-4 h-4" />
             <span>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
-          </div>
+          </Button>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
