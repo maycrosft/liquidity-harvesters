@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Menu, Users, Wheat, LogOut, Facebook, Instagram, Twitter, Clover, Wallet } from "lucide-react";
+import { Menu, Users, Wheat, LogOut, Facebook, Instagram, Twitter, Wallet } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 export function AppHeader() {
@@ -69,8 +69,12 @@ export function AppHeader() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-green-100 shadow-sm">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Clover className="w-8 h-8 text-green-600" />
+        <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/dashboard")}>
+          <img 
+            src="/lovable-uploads/9def59dd-2c41-4f36-924e-936c47c0d243.png" 
+            alt="Green Cash Logo" 
+            className="w-8 h-8 object-contain"
+          />
           <h1 className="text-xl font-bold text-green-800">Green Cash</h1>
         </div>
 
@@ -94,7 +98,12 @@ export function AppHeader() {
             <DropdownMenuContent align="end" className="w-48">
               <DropdownMenuItem onClick={() => navigate("/dashboard")}>
                 <span className="flex items-center gap-2">
-                  <Clover className="h-4 w-4" /> Início
+                  <img 
+                    src="/lovable-uploads/9def59dd-2c41-4f36-924e-936c47c0d243.png" 
+                    alt="Green Cash" 
+                    className="w-4 h-4 object-contain"
+                  /> 
+                  Início
                 </span>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => navigate("/comunidade")}>
