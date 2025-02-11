@@ -43,7 +43,7 @@ export function AppHeader() {
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="hidden md:flex items-center gap-2 text-sm text-gray-600">
+          <div className="flex items-center gap-2 text-sm text-gray-600">
             <Wallet className="w-4 h-4" />
             <span>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
           </div>
