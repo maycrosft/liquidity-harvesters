@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -62,7 +63,11 @@ const Registration = () => {
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <img src="/green-cash-logo.png" alt="Green Cash Logo" className="h-12 w-12" />
+            <img 
+              src="/lovable-uploads/2f3117ea-e5c1-4642-9bbb-f20e00dcc5a4.png" 
+              alt="Green Cash Logo" 
+              className="h-12 w-12 object-contain"
+            />
             <CardTitle className="text-2xl text-center text-green-700">Green Cash</CardTitle>
           </div>
           <CardDescription className="text-center">

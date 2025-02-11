@@ -11,7 +11,7 @@ const Index = () => {
         <div className="text-center space-y-4">
           <div className="flex items-center justify-center gap-4">
             <img 
-              src="/green-cash-logo.png" 
+              src="/lovable-uploads/2f3117ea-e5c1-4642-9bbb-f20e00dcc5a4.png" 
               alt="Logo Green Cash" 
               className="w-12 h-12 object-contain"
             />
