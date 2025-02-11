@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Menu, Users, Wheat, LogOut, Facebook, Instagram, Twitter, Clover } from "lucide-react";
+import { Menu, Users, Wheat, LogOut, Facebook, Instagram, Twitter, Clover, Wallet } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 export function AppHeader() {
@@ -17,6 +17,7 @@ export function AppHeader() {
   const location = useLocation();
   const { toast } = useToast();
   const isLoggedIn = location.pathname !== "/";
+  const [walletAddress] = useState(localStorage.getItem("walletAddress") || "0x..."); // Simplified for demo
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -41,52 +42,59 @@ export function AppHeader() {
           <h1 className="text-xl font-bold text-green-800">Green Cash</h1>
         </div>
 
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="icon">
-              <Menu className="h-5 w-5" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-48">
-            <DropdownMenuItem onClick={() => navigate("/dashboard")}>
-              <span className="flex items-center gap-2">
-                <Clover className="h-4 w-4" /> Início
-              </span>
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate("/comunidade")}>
-              <span className="flex items-center gap-2">
-                <Users className="h-4 w-4" /> Comunidade
-              </span>
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate("/farms")}>
-              <span className="flex items-center gap-2">
-                <Wheat className="h-4 w-4" /> Farms
-              </span>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => openSocialMedia('https://facebook.com')}>
-              <span className="flex items-center gap-2">
-                <Facebook className="h-4 w-4" /> Facebook
-              </span>
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => openSocialMedia('https://instagram.com')}>
-              <span className="flex items-center gap-2">
-                <Instagram className="h-4 w-4" /> Instagram
-              </span>
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => openSocialMedia('https://twitter.com')}>
-              <span className="flex items-center gap-2">
-                <Twitter className="h-4 w-4" /> Twitter
-              </span>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout} className="text-red-600">
-              <span className="flex items-center gap-2">
-                <LogOut className="h-4 w-4" /> Sair
-              </span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-2 text-sm text-gray-600">
+            <Wallet className="w-4 h-4" />
+            <span>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
+          </div>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+                <span className="flex items-center gap-2">
+                  <Clover className="h-4 w-4" /> Início
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/comunidade")}>
+                <span className="flex items-center gap-2">
+                  <Users className="h-4 w-4" /> Comunidade
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/farms")}>
+                <span className="flex items-center gap-2">
+                  <Wheat className="h-4 w-4" /> Farms
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => openSocialMedia('https://facebook.com')}>
+                <span className="flex items-center gap-2">
+                  <Facebook className="h-4 w-4" /> Facebook
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => openSocialMedia('https://instagram.com')}>
+                <span className="flex items-center gap-2">
+                  <Instagram className="h-4 w-4" /> Instagram
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => openSocialMedia('https://twitter.com')}>
+                <span className="flex items-center gap-2">
+                  <Twitter className="h-4 w-4" /> Twitter
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={handleLogout} className="text-red-600">
+                <span className="flex items-center gap-2">
+                  <LogOut className="h-4 w-4" /> Sair
+                </span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
     </header>
   );
