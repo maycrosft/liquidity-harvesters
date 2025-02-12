@@ -6,10 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
+import { Wallet } from "lucide-react";
 
 const Registration = () => {
   const [nome, setNome] = useState("");
   const [senha, setSenha] = useState("");
+  const [walletAddress, setWalletAddress] = useState("");
   const [isConnecting, setIsConnecting] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -17,16 +19,15 @@ const Registration = () => {
   const connectWallet = async () => {
     setIsConnecting(true);
     try {
-      // Verifica se o MetaMask está instalado
       if (typeof window.ethereum !== 'undefined') {
-        // Solicita acesso à conta
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const address = accounts[0];
+        setWalletAddress(address);
+        localStorage.setItem("walletAddress", address);
         toast({
           title: "Carteira conectada com sucesso!",
-          description: "Sua carteira MetaMask foi conectada.",
+          description: "Agora complete seu cadastro com nome e senha.",
         });
-        // Redireciona para a página principal
-        navigate("/dashboard");
       } else {
         toast({
           variant: "destructive",
@@ -47,6 +48,15 @@ const Registration = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!walletAddress) {
+      toast({
+        variant: "destructive",
+        title: "Carteira não conectada",
+        description: "Por favor, conecte sua carteira primeiro.",
+      });
+      return;
+    }
+    
     if (!nome || !senha) {
       toast({
         variant: "destructive",
@@ -55,7 +65,19 @@ const Registration = () => {
       });
       return;
     }
-    await connectWallet();
+
+    // Aqui você pode adicionar a lógica para salvar os dados do usuário
+    localStorage.setItem("user", JSON.stringify({ 
+      address: walletAddress,
+      nome,
+      senha 
+    }));
+
+    toast({
+      title: "Cadastro realizado com sucesso!",
+      description: "Bem-vindo ao Green Cash.",
+    });
+    navigate("/dashboard");
   };
 
   return (
@@ -71,38 +93,59 @@ const Registration = () => {
             <CardTitle className="text-2xl text-center text-green-700">Green Cash</CardTitle>
           </div>
           <CardDescription className="text-center">
-            Cadastre-se para começar a investir
+            Conecte sua carteira para começar
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="nome">Nome</Label>
-              <Input
-                id="nome"
-                placeholder="Digite seu nome"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="senha">Senha</Label>
-              <Input
-                id="senha"
-                type="password"
-                placeholder="Digite sua senha"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-              />
-            </div>
+          <div className="space-y-4">
             <Button
-              type="submit"
+              type="button"
               className="w-full bg-green-600 hover:bg-green-700"
-              disabled={isConnecting}
+              onClick={connectWallet}
+              disabled={!!walletAddress || isConnecting}
             >
-              {isConnecting ? "Conectando..." : "Cadastrar e Conectar Carteira"}
+              <Wallet className="mr-2 h-4 w-4" />
+              {isConnecting ? "Conectando..." : walletAddress ? "Carteira Conectada" : "Conectar Carteira"}
             </Button>
-          </form>
+
+            {walletAddress && (
+              <div className="p-3 bg-green-50 rounded-md border border-green-200">
+                <p className="text-sm text-green-800 text-center break-all">
+                  Carteira: {walletAddress}
+                </p>
+              </div>
+            )}
+
+            {walletAddress && (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="nome">Nome</Label>
+                  <Input
+                    id="nome"
+                    placeholder="Digite seu nome"
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="senha">Senha</Label>
+                  <Input
+                    id="senha"
+                    type="password"
+                    placeholder="Digite sua senha"
+                    value={senha}
+                    onChange={(e) => setSenha(e.target.value)}
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  className="w-full bg-green-600 hover:bg-green-700"
+                >
+                  Cadastrar
+                </Button>
+              </form>
+            )}
+          </div>
         </CardContent>
       </Card>
     </div>
