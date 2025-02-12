@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { SidebarProvider } from "@/components/ui/sidebar";
+import { SolanaProvider } from "@/components/SolanaProvider";
 import { AppHeader } from "@/components/AppHeader";
 import Registration from "./pages/Registration";
 import Dashboard from "./pages/Dashboard";
@@ -19,22 +20,24 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <SidebarProvider>
-          <div className="min-h-screen flex w-full flex-col">
-            <AppHeader />
-            <main className="flex-1">
-              <Routes>
-                <Route path="/" element={<Registration />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/comunidade" element={<Community />} />
-                <Route path="/farms" element={<Farms />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
-          </div>
-        </SidebarProvider>
-      </BrowserRouter>
+      <SolanaProvider>
+        <BrowserRouter>
+          <SidebarProvider>
+            <div className="min-h-screen flex w-full flex-col">
+              <AppHeader />
+              <main className="flex-1">
+                <Routes>
+                  <Route path="/" element={<Registration />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/comunidade" element={<Community />} />
+                  <Route path="/farms" element={<Farms />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </main>
+            </div>
+          </SidebarProvider>
+        </BrowserRouter>
+      </SolanaProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
