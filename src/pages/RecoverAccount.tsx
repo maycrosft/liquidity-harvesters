@@ -8,15 +8,16 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { LogIn } from "lucide-react";
+import { Key, RefreshCw } from "lucide-react";
 
-const Login = () => {
-  const [senha, setSenha] = useState("");
+const RecoverAccount = () => {
+  const [novaSenha, setNovaSenha] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
   const navigate = useNavigate();
   const { toast } = useToast();
   const { publicKey } = useWallet();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleRecover = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!publicKey) {
@@ -28,11 +29,20 @@ const Login = () => {
       return;
     }
 
-    if (!senha) {
+    if (!novaSenha || !confirmarSenha) {
       toast({
         variant: "destructive",
-        title: "Senha obrigatória",
-        description: "Por favor, digite sua senha.",
+        title: "Campos obrigatórios",
+        description: "Por favor, preencha todos os campos.",
+      });
+      return;
+    }
+
+    if (novaSenha !== confirmarSenha) {
+      toast({
+        variant: "destructive",
+        title: "Senhas diferentes",
+        description: "As senhas não coincidem.",
       });
       return;
     }
@@ -43,9 +53,8 @@ const Login = () => {
       toast({
         variant: "destructive",
         title: "Usuário não encontrado",
-        description: "Por favor, faça o cadastro primeiro.",
+        description: "Não foi encontrada uma conta com esta carteira.",
       });
-      navigate("/");
       return;
     }
 
@@ -60,22 +69,15 @@ const Login = () => {
       return;
     }
 
-    if (user.senha !== senha) {
-      toast({
-        variant: "destructive",
-        title: "Senha incorreta",
-        description: "Por favor, verifique sua senha.",
-      });
-      return;
-    }
+    // Atualizar senha
+    user.senha = novaSenha;
+    localStorage.setItem("user", JSON.stringify(user));
 
-    // Login bem sucedido
-    localStorage.setItem("isLoggedIn", "true");
     toast({
-      title: "Login realizado com sucesso!",
-      description: "Bem-vindo de volta ao Green Cash.",
+      title: "Senha atualizada com sucesso!",
+      description: "Você já pode fazer login com sua nova senha.",
     });
-    navigate("/dashboard");
+    navigate("/login");
   };
 
   return (
@@ -88,10 +90,10 @@ const Login = () => {
               alt="Green Cash Logo" 
               className="h-12 w-12 object-contain"
             />
-            <CardTitle className="text-2xl text-center text-green-700">Green Cash</CardTitle>
+            <CardTitle className="text-2xl text-center text-green-700">Recuperar Conta</CardTitle>
           </div>
           <CardDescription className="text-center">
-            Faça login para acessar sua conta
+            Conecte sua carteira para redefinir sua senha
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -109,46 +111,44 @@ const Login = () => {
             )}
 
             {publicKey && (
-              <form onSubmit={handleLogin} className="space-y-4">
+              <form onSubmit={handleRecover} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="senha">Senha</Label>
+                  <Label htmlFor="novaSenha">Nova Senha</Label>
                   <Input
-                    id="senha"
+                    id="novaSenha"
                     type="password"
-                    placeholder="Digite sua senha"
-                    value={senha}
-                    onChange={(e) => setSenha(e.target.value)}
+                    placeholder="Digite sua nova senha"
+                    value={novaSenha}
+                    onChange={(e) => setNovaSenha(e.target.value)}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="confirmarSenha">Confirmar Nova Senha</Label>
+                  <Input
+                    id="confirmarSenha"
+                    type="password"
+                    placeholder="Confirme sua nova senha"
+                    value={confirmarSenha}
+                    onChange={(e) => setConfirmarSenha(e.target.value)}
                   />
                 </div>
                 <Button
                   type="submit"
                   className="w-full bg-green-600 hover:bg-green-700"
                 >
-                  <LogIn className="mr-2 h-4 w-4" />
-                  Entrar
+                  <RefreshCw className="mr-2 h-4 w-4" />
+                  Redefinir Senha
                 </Button>
-                <div className="space-y-2 text-center text-sm text-gray-600">
-                  <p>
-                    Não tem uma conta?{" "}
-                    <button
-                      type="button"
-                      onClick={() => navigate("/")}
-                      className="text-green-600 hover:underline"
-                    >
-                      Cadastre-se
-                    </button>
-                  </p>
-                  <p>
-                    Esqueceu sua senha?{" "}
-                    <button
-                      type="button"
-                      onClick={() => navigate("/recuperar-conta")}
-                      className="text-green-600 hover:underline"
-                    >
-                      Recuperar conta
-                    </button>
-                  </p>
-                </div>
+                <p className="text-center text-sm text-gray-600">
+                  Lembrou sua senha?{" "}
+                  <button
+                    type="button"
+                    onClick={() => navigate("/login")}
+                    className="text-green-600 hover:underline"
+                  >
+                    Fazer login
+                  </button>
+                </p>
               </form>
             )}
           </div>
@@ -158,4 +158,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default RecoverAccount;

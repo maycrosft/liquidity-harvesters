@@ -9,6 +9,7 @@ import { SolanaProvider } from "@/components/SolanaProvider";
 import { AppHeader } from "@/components/AppHeader";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
+import RecoverAccount from "./pages/RecoverAccount";
 import Dashboard from "./pages/Dashboard";
 import Community from "./pages/Community";
 import Farms from "./pages/Farms";
@@ -39,6 +40,7 @@ const App = () => (
                 <Routes>
                   <Route path="/" element={<Registration />} />
                   <Route path="/login" element={<Login />} />
+                  <Route path="/recuperar-conta" element={<RecoverAccount />} />
                   <Route 
                     path="/dashboard" 
                     element={
