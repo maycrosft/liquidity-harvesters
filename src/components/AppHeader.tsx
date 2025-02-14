@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,49 +10,27 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Menu, Users, Wheat, LogOut, Facebook, Instagram, Twitter, Clover, Wallet } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { useWallet } from '@solana/wallet-adapter-react';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 
 export function AppHeader() {
   const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
-  const isLoggedIn = location.pathname !== "/";
-  const [walletAddress, setWalletAddress] = useState(localStorage.getItem("walletAddress") || "0x...");
+  const { publicKey, disconnect } = useWallet();
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    toast({
-      title: "Logout realizado com sucesso",
-      description: "Você foi desconectado da sua conta",
-    });
-    navigate("/");
-  };
-
-  const connectWallet = async () => {
+  const handleLogout = async () => {
     try {
-      if (typeof window.ethereum !== 'undefined') {
-        const accounts = await window.ethereum.request({
-          method: 'eth_requestAccounts'
-        });
-        const newAddress = accounts[0];
-        setWalletAddress(newAddress);
-        localStorage.setItem("walletAddress", newAddress);
-        toast({
-          title: "Carteira conectada com sucesso",
-          description: "Sua carteira foi atualizada",
-        });
-      } else {
-        toast({
-          variant: "destructive",
-          title: "MetaMask não encontrado",
-          description: "Por favor, instale o MetaMask para continuar.",
-        });
-      }
-    } catch (error) {
+      await disconnect();
+      localStorage.removeItem("isLoggedIn");
       toast({
-        variant: "destructive",
-        title: "Erro ao conectar carteira",
-        description: "Ocorreu um erro ao tentar conectar sua carteira.",
+        title: "Logout realizado com sucesso",
+        description: "Você foi desconectado da sua conta",
       });
+      navigate("/login");
+    } catch (error) {
+      console.error('Erro ao desconectar:', error);
     }
   };
 
@@ -71,15 +49,7 @@ export function AppHeader() {
         </div>
 
         <div className="flex items-center gap-4">
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={connectWallet}
-            className="flex items-center gap-2 text-sm text-gray-600 hover:text-green-600"
-          >
-            <Wallet className="w-4 h-4" />
-            <span>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
-          </Button>
+          <WalletMultiButton className="bg-green-600 hover:bg-green-700" />
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
